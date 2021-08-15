@@ -7,20 +7,44 @@
         alt="vue"
         class="logo"
       />
-      <h1>Welcome to Vue.js</h1>
+      <h1 v-on:click="prependAdjective()">Welcome to {{name}}</h1>
     </div>
     <div class="bottom">
-      To get started, edit <code>./src/components/App.vue</code> and save to reload.<br/>
-      <span class="fade">
-        Checkout <code>./README.md</code> for more usages.
-      </span>
+      Here's number two computed by math.js: {{two()}}
     </div>
   </div>
 </template>
 
 <script>
+  import * as math from 'mathjs'
+
+  let name = 'Thingamajig'
+  let adjectives = [
+    'Awesome', 'Epic', 'Cool', 'TotesYeetYo'
+  ]
+
+  function randomItem(arr) {
+    return arr[Math.floor( Math.random() * arr.length )]
+  }
+
   export default {
-    name: 'app'
+    name,
+
+    data() {
+      return {
+        name
+      }
+    },
+
+    methods: {
+      prependAdjective() {
+        this.name = randomItem(adjectives) + this.name
+      },
+
+      two() {
+        return math.add(1, 1)
+      }
+    }
   }
 </script>
 
