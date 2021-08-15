@@ -42,7 +42,7 @@
       },
 
       two() {
-        return math.add(1, 1)
+        return math.evaluate('1 + 1')
       }
     }
   }
